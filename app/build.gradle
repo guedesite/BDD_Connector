@@ -6,14 +6,31 @@
  * User Manual available at https://docs.gradle.org/7.6/userguide/building_java_projects.html
  */
 
-plugins {
-    // Apply the application plugin to add support for building a CLI application in Java.
-    id 'application'
+buildscript {
+  repositories {
+    maven { url 'https://plugins.gradle.org/m2/' }
+  }
+  dependencies {
+    classpath 'com.github.jengelman.gradle.plugins:shadow:6.0.0'
+  }
 }
+
+plugins {
+  id 'application'
+  id 'java'
+  id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+
+mainClassName = 'fr.neocraft.bdd.main'
+
 
 sourceCompatibility = 11
 targetCompatibility = 11
-compileJava.options.encoding = 'UTF-8'
+//compileJava.options.encoding = 'UTF-8'
 
 repositories {
     jcenter()
@@ -98,7 +115,9 @@ dependencies {
     implementation 'com.github.Querz:NBT:6.1'
 
 }
-
+shadowJar {
+  mergeServiceFiles()
+}
 application {
     // Define the main class for the application.
     mainClass = 'fr.neocraft.bdd.main'
