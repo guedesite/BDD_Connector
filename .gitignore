@@ -33,3 +33,4 @@ app/.classpath
 .settings/org.eclipse.buildship.core.prefs
 app/.settings/org.eclipse.buildship.core.prefs
 app/.settings/org.eclipse.jdt.core.prefs
+app/assets/crash
